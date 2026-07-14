@@ -1,1 +1,1188 @@
-revista memorias USTA
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revista Memorias · USTA · Reto 5 Días Lab 10</title>
+<!-- GitHub Pages · Reto 5 Días de Lab 10 -->
+<meta name="description" content="Plataforma editorial Revista Memorias — Facultad de Arquitectura USTA Bucaramanga. Reto 5 Días de Lab 10.">
+<meta name="author" content="César Florez · USTA Arquitectura">
+<meta property="og:title" content="Revista Memorias · USTA · Reto 5 Días Lab 10">
+<meta property="og:description" content="Plataforma de edición, corrección y publicación académica para la Facultad de Arquitectura de la Universidad Santo Tomás.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
+<style>
+  /* ── RETO BANNER ── */
+  .reto-banner {
+    background: linear-gradient(90deg, #0D1117 0%, #161B22 50%, #0D1117 100%);
+    border-bottom: 1px solid rgba(201,168,76,0.35);
+    padding: 7px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    font-family: 'Inter', monospace;
+  }
+  .reto-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .reto-tag {
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: #C9A84C;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .reto-name {
+    color: rgba(232,213,163,0.8);
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+  .reto-name strong { color: #C9A84C; }
+  .reto-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .reto-gh-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: rgba(232,213,163,0.5);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .reto-gh-link:hover { color: #C9A84C; }
+  .reto-gh-link i { font-size: 13px; }
+  .reto-dot { width: 5px; height: 5px; border-radius: 50%; background: #1D9E75; box-shadow: 0 0 5px #1D9E75; }
+
+  /* ── RESET & TOKENS ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold:       #C9A84C;
+    --gold-light: #E8D5A3;
+    --gold-dim:   rgba(201,168,76,0.18);
+    --dark:       #1A1A2E;
+    --mid:        #2D2D44;
+    --ink:        #22222F;
+    --paper:      #F7F3EC;
+    --muted:      #7A7870;
+    --border:     rgba(201,168,76,0.22);
+    --border-str: rgba(201,168,76,0.45);
+    --radius:     8px;
+    --shadow:     0 2px 12px rgba(26,26,46,0.10);
+
+    /* scores */
+    --score-ok:   #1D9E75;
+    --score-mid:  #EF9F27;
+    --score-low:  #E24B4A;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── TOPBAR ── */
+  .topbar {
+    background: var(--dark);
+    padding: 0 24px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .topbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-mark {
+    width: 32px; height: 32px;
+    border: 1.5px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .brand-mark::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    border: 1px solid rgba(201,168,76,0.35);
+    transform: rotate(45deg);
+  }
+  .brand-mark i { color: var(--gold); font-size: 14px; position: relative; z-index: 1; }
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 0.3px;
+  }
+  .brand-sep { color: rgba(201,168,76,0.3); margin: 0 4px; }
+  .brand-sub { font-size: 11px; color: rgba(232,213,163,0.5); letter-spacing: 1px; text-transform: uppercase; }
+
+  .topbar-actions { display: flex; align-items: center; gap: 8px; }
+  .top-btn {
+    height: 30px;
+    padding: 0 12px;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: var(--radius);
+    cursor: pointer;
+    border: 1px solid rgba(201,168,76,0.3);
+    background: transparent;
+    color: rgba(232,213,163,0.7);
+    display: flex; align-items: center; gap: 5px;
+    transition: all 0.15s;
+    letter-spacing: 0.3px;
+    font-family: 'Inter', sans-serif;
+  }
+  .top-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .top-btn.primary {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--dark);
+    font-weight: 600;
+  }
+  .top-btn.primary:hover { background: #B8963E; border-color: #B8963E; }
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--score-ok);
+    box-shadow: 0 0 5px var(--score-ok);
+  }
+
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    background: #fff;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    overflow-x: auto;
+    padding: 0 16px;
+    gap: 2px;
+  }
+  .nav-tab {
+    padding: 0 14px;
+    height: 42px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--muted);
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: none;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    white-space: nowrap;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+    transition: all 0.15s;
+  }
+  .nav-tab:hover { color: var(--ink); }
+  .nav-tab.active { color: var(--dark); border-bottom-color: var(--gold); }
+  .nav-tab i { font-size: 15px; }
+  .tab-badge {
+    font-size: 9px;
+    font-weight: 600;
+    background: var(--gold-dim);
+    color: #7A600E;
+    padding: 1px 5px;
+    border-radius: 10px;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    min-height: 0;
+  }
+
+  /* ── LEFT: EDITOR ── */
+  .editor-col {
+    padding: 24px 28px;
+    overflow-y: auto;
+    border-right: 1px solid var(--border);
+  }
+
+  /* Article header info */
+  .article-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .article-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .article-breadcrumb i { font-size: 13px; color: var(--gold); }
+  .article-breadcrumb span.sep { color: var(--border-str); }
+  .article-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .status-pill {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .status-pill.draft { background: rgba(201,168,76,0.15); color: #7A600E; }
+  .status-pill.review { background: rgba(239,159,39,0.15); color: #854F0B; }
+  .status-pill.approved { background: rgba(29,158,117,0.12); color: #0F6E56; }
+
+  /* Meta fields grid */
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .meta-group { display: flex; flex-direction: column; gap: 5px; }
+  .meta-group.full { grid-column: 1 / -1; }
+  .meta-label {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .meta-label.required::after { content: '*'; color: var(--score-low); margin-left: 2px; }
+  .meta-input, .meta-select, .meta-textarea {
+    padding: 9px 12px;
+    font-size: 13px;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+    width: 100%;
+  }
+  .meta-input:focus, .meta-select:focus, .meta-textarea:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px var(--gold-dim);
+  }
+  .meta-textarea { resize: none; height: 68px; line-height: 1.6; }
+  .meta-input::placeholder, .meta-textarea::placeholder { color: #B4B2A9; }
+  .meta-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%237A7870' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px; cursor: pointer; }
+
+  /* Divider */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 16px 0 14px;
+  }
+  .section-divider span {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    white-space: nowrap;
+  }
+  .section-divider::before, .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Toolbar */
+  .toolbar {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 6px 8px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-wrap: wrap;
+  }
+  .tool-btn {
+    width: 30px; height: 30px;
+    border: none;
+    border-radius: 6px;
+    background: none;
+    cursor: pointer;
+    color: var(--muted);
+    font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.12s;
+    font-family: 'Inter', sans-serif;
+  }
+  .tool-btn:hover { background: var(--gold-dim); color: var(--ink); }
+  .tool-btn.active { background: var(--gold-dim); color: #7A600E; }
+  .tool-btn.bold i { font-weight: 700; }
+  .tool-sep {
+    width: 1px; height: 20px;
+    background: var(--border);
+    margin: 0 4px;
+    flex-shrink: 0;
+  }
+  .tool-select {
+    height: 28px;
+    padding: 0 8px;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    color: var(--ink);
+    cursor: pointer;
+    outline: none;
+  }
+  .tool-select:focus { border-color: var(--gold); }
+
+  /* Content editor */
+  .content-area {
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 var(--radius) var(--radius);
+    background: #fff;
+    overflow: hidden;
+  }
+  #editor-content {
+    min-height: 320px;
+    max-height: 480px;
+    overflow-y: auto;
+    padding: 20px;
+    font-size: 14px;
+    line-height: 1.85;
+    color: var(--ink);
+    outline: none;
+    caret-color: var(--gold);
+    font-family: 'Inter', sans-serif;
+  }
+  #editor-content:empty::before {
+    content: 'Escriba o pegue el contenido del artículo aquí. El análisis editorial se actualizará automáticamente conforme escriba...';
+    color: #B4B2A9;
+    pointer-events: none;
+  }
+  #editor-content:focus { }
+  #editor-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 700;
+    color: var(--dark);
+    margin: 16px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--border);
+  }
+  #editor-content h3 {
+    font-size: 14px; font-weight: 600;
+    color: var(--ink);
+    margin: 12px 0 6px;
+  }
+  #editor-content blockquote {
+    border-left: 3px solid var(--gold);
+    padding: 6px 14px;
+    margin: 12px 0;
+    background: var(--gold-dim);
+    font-style: italic;
+    color: #5F5E5A;
+    border-radius: 0 var(--radius) var(--radius) 0;
+  }
+  #editor-content strong { color: var(--dark); }
+
+  /* Editor footer */
+  .editor-footer {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+    border-radius: 0 0 var(--radius) var(--radius);
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: -1px;
+  }
+  .word-stats { display: flex; gap: 14px; }
+  .stat-item { font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 4px; }
+  .stat-item i { font-size: 13px; }
+  .stat-num { font-weight: 500; color: var(--ink); }
+  .editor-hint { font-size: 10px; color: #C4C2BA; letter-spacing: 0.3px; }
+
+  /* Find/replace bar */
+  .find-bar {
+    background: var(--dark);
+    border: 1px solid var(--border-str);
+    border-radius: var(--radius);
+    padding: 8px 12px;
+    display: none;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .find-bar.visible { display: flex; }
+  .find-bar input {
+    flex: 1;
+    padding: 5px 8px;
+    font-size: 12px;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.08);
+    color: var(--gold-light);
+    outline: none;
+  }
+  .find-bar input::placeholder { color: rgba(232,213,163,0.3); }
+  .find-bar input:focus { border-color: var(--gold); }
+  .find-btn {
+    padding: 5px 10px;
+    font-size: 11px;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 5px;
+    background: transparent;
+    color: rgba(232,213,163,0.7);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .find-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .find-close { background: none; border: none; color: rgba(232,213,163,0.5); cursor: pointer; font-size: 14px; padding: 4px; }
+
+  /* ── RIGHT: SIDEBAR ── */
+  .sidebar {
+    background: #faf8f4;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-block {
+    padding: 18px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sidebar-block:last-child { border-bottom: none; flex: 1; }
+
+  .sidebar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .sidebar-title {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .sidebar-title i { font-size: 14px; color: var(--gold); }
+
+  /* Semester pills */
+  .sem-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+  }
+  .sem-pill {
+    padding: 5px 2px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    background: #fff;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    transition: all 0.12s;
+  }
+  .sem-pill:hover { border-color: var(--border-str); color: var(--ink); }
+  .sem-pill.active { background: var(--gold); border-color: var(--gold); color: var(--dark); font-weight: 600; }
+
+  /* Analysis scores */
+  .score-list { display: flex; flex-direction: column; gap: 7px; }
+  .score-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .score-name { font-size: 11px; color: var(--ink); flex: 0 0 80px; }
+  .score-track {
+    flex: 1;
+    height: 5px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .score-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.6s ease;
+  }
+  .score-fill.ok  { background: var(--score-ok); }
+  .score-fill.mid { background: var(--score-mid); }
+  .score-fill.low { background: var(--score-low); }
+  .score-val { font-size: 11px; font-weight: 500; color: var(--ink); min-width: 30px; text-align: right; }
+
+  /* Corrections mini-list */
+  .correction-mini {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 10px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 6px;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.12s;
+  }
+  .correction-mini:hover { border-left-color: var(--gold); }
+  .correction-mini.ort { border-left-color: #E24B4A; }
+  .correction-mini.apa { border-left-color: #EF9F27; }
+  .correction-mini.est { border-left-color: #7F77DD; }
+  .cm-icon { font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .cm-icon.ort { color: #E24B4A; }
+  .cm-icon.apa { color: #EF9F27; }
+  .cm-icon.est { color: #7F77DD; }
+  .cm-body { }
+  .cm-type { font-size: 9px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .cm-text { font-size: 11px; color: var(--ink); line-height: 1.4; }
+
+  /* Action buttons */
+  .action-list { display: flex; flex-direction: column; gap: 6px; }
+  .action-btn {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: #fff;
+    color: var(--ink);
+    cursor: pointer;
+    display: flex; align-items: center; gap: 7px;
+    transition: all 0.12s;
+    text-align: left;
+  }
+  .action-btn:hover { border-color: var(--border-str); background: var(--gold-dim); }
+  .action-btn i { font-size: 15px; color: var(--gold); flex-shrink: 0; }
+  .action-btn.primary {
+    background: var(--dark);
+    border-color: var(--dark);
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .action-btn.primary:hover { background: var(--mid); }
+  .action-btn.primary i { color: var(--gold); }
+
+  /* AI analyze button */
+  .ai-btn {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, var(--dark), var(--mid));
+    border: 1px solid var(--gold);
+    border-radius: var(--radius);
+    color: var(--gold);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    letter-spacing: 0.3px;
+    transition: all 0.15s;
+    margin-top: 4px;
+  }
+  .ai-btn:hover { background: var(--mid); box-shadow: 0 0 0 3px var(--gold-dim); }
+  .ai-btn i { font-size: 16px; }
+
+  /* Toast notification */
+  .toast {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    background: var(--dark);
+    border: 1px solid var(--gold);
+    border-radius: var(--radius);
+    padding: 10px 16px;
+    font-size: 12px;
+    color: var(--gold-light);
+    display: flex; align-items: center; gap: 8px;
+    box-shadow: var(--shadow);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 999;
+    pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast i { color: var(--score-ok); font-size: 16px; }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border-str); border-radius: 10px; }
+</style>
+</head>
+<body>
+
+<!-- RETO BANNER -->
+<div class="reto-banner">
+  <div class="reto-left">
+    <span class="reto-tag">⬡ Lab 10</span>
+    <span class="reto-name"><strong>Reto 5 Días</strong> · Plataforma Editorial · Facultad de Arquitectura USTA Bucaramanga</span>
+  </div>
+  <div class="reto-right">
+    <div class="reto-dot" title="Proyecto activo"></div>
+    <a class="reto-gh-link" href="https://github.com/asesorfinancierocesarflorez-sys/revista-memorias" target="_blank" rel="noopener">
+      <i class="ti ti-brand-github"></i> asesorfinancierocesarflorez-sys
+    </a>
+  </div>
+</div>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-brand">
+    <div class="brand-mark"><i class="ti ti-building"></i></div>
+    <div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <span class="brand-name">Revista Memorias</span>
+        <span class="brand-sep">·</span>
+        <span class="brand-sub">Editor</span>
+      </div>
+      <div style="font-size:10px;color:rgba(232,213,163,0.4);letter-spacing:0.5px;margin-top:1px">Facultad de Arquitectura · USTA Bucaramanga</div>
+    </div>
+  </div>
+  <div class="topbar-actions">
+    <div class="status-dot" title="Guardado automáticamente"></div>
+    <button class="top-btn" onclick="showToast('Borrador guardado', 'ti-device-floppy')">
+      <i class="ti ti-device-floppy"></i> Guardar borrador
+    </button>
+    <button class="top-btn" onclick="toggleFind()">
+      <i class="ti ti-search"></i> Buscar
+    </button>
+    <button class="top-btn primary" onclick="showToast('Artículo enviado para revisión editorial', 'ti-send')">
+      <i class="ti ti-send"></i> Enviar a revisión
+    </button>
+  </div>
+</header>
+
+<!-- NAV TABS -->
+<nav class="nav-tabs">
+  <button class="nav-tab active"><i class="ti ti-file-text"></i> Editor</button>
+  <button class="nav-tab"><i class="ti ti-list-check"></i> Correcciones <span class="tab-badge">5</span></button>
+  <button class="nav-tab"><i class="ti ti-layout"></i> Diagramación</button>
+  <button class="nav-tab"><i class="ti ti-eye"></i> Vista previa</button>
+  <button class="nav-tab"><i class="ti ti-book"></i> Trabajos</button>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- ── EDITOR COLUMN ── -->
+  <div class="editor-col">
+
+    <!-- Article breadcrumb & status -->
+    <div class="article-head">
+      <div class="article-breadcrumb">
+        <i class="ti ti-home"></i>
+        <span>Trabajos</span>
+        <span class="sep">/</span>
+        <span>Vol. IV · 2025</span>
+        <span class="sep">/</span>
+        <span style="color:var(--ink);font-weight:500">Nuevo artículo</span>
+      </div>
+      <div class="article-status">
+        <span class="status-pill draft">Borrador</span>
+      </div>
+    </div>
+
+    <!-- Metadata fields -->
+    <div class="meta-grid">
+      <div class="meta-group full">
+        <label class="meta-label required">Título del artículo</label>
+        <input class="meta-input" type="text" id="field-titulo"
+          placeholder="Ej: Espacio público y memoria colectiva en el centro histórico de Bucaramanga"
+          oninput="autoSave()">
+      </div>
+      <div class="meta-group">
+        <label class="meta-label required">Autor / Estudiante</label>
+        <input class="meta-input" type="text" id="field-autor" placeholder="Nombre completo" oninput="autoSave()">
+      </div>
+      <div class="meta-group">
+        <label class="meta-label required">Código estudiantil</label>
+        <input class="meta-input" type="text" id="field-codigo" placeholder="Ej: 2021115XXX">
+      </div>
+      <div class="meta-group">
+        <label class="meta-label required">Semestre</label>
+        <select class="meta-select" id="field-semestre" onchange="updateSemFilter()">
+          <option value="">Seleccionar semestre</option>
+          <option>I Semestre</option><option>II Semestre</option>
+          <option>III Semestre</option><option>IV Semestre</option>
+          <option>V Semestre</option><option>VI Semestre</option>
+          <option>VII Semestre</option><option>VIII Semestre</option>
+          <option>IX Semestre</option><option>X Semestre</option>
+        </select>
+      </div>
+      <div class="meta-group">
+        <label class="meta-label required">Área temática</label>
+        <select class="meta-select" id="field-area">
+          <option value="">Seleccionar área</option>
+          <option>Diseño Urbano</option>
+          <option>Arquitectura Sostenible</option>
+          <option>Historia y Teoría</option>
+          <option>Tecnología Constructiva</option>
+          <option>Patrimonio y Restauración</option>
+          <option>Hábitat y Vivienda</option>
+          <option>Urbanismo y Territorio</option>
+        </select>
+      </div>
+      <div class="meta-group">
+        <label class="meta-label">Palabras clave (separadas por coma)</label>
+        <input class="meta-input" type="text" placeholder="espacio público, memoria, morfología urbana">
+      </div>
+      <div class="meta-group">
+        <label class="meta-label">Director / Docente tutor</label>
+        <input class="meta-input" type="text" placeholder="Nombre del docente">
+      </div>
+      <div class="meta-group full">
+        <label class="meta-label required">Resumen (Abstract)</label>
+        <textarea class="meta-textarea" id="field-abstract" placeholder="Síntesis del artículo en máximo 200 palabras. Incluir: objetivo, metodología, resultados principales y conclusión. Este texto se publicará al inicio del artículo..." oninput="autoSave()"></textarea>
+      </div>
+    </div>
+
+    <!-- Find/replace bar -->
+    <div class="find-bar" id="find-bar">
+      <i class="ti ti-search" style="color:var(--gold);font-size:14px;flex-shrink:0"></i>
+      <input type="text" id="find-input" placeholder="Buscar en el texto...">
+      <input type="text" id="replace-input" placeholder="Reemplazar por...">
+      <button class="find-btn" onclick="findText()">Buscar</button>
+      <button class="find-btn" onclick="replaceText()">Reemplazar</button>
+      <button class="find-close" onclick="toggleFind()"><i class="ti ti-x"></i></button>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="section-divider"><span>Contenido del artículo</span></div>
+
+    <div class="toolbar">
+      <select class="tool-select" onchange="formatBlock(this.value); this.value=''">
+        <option value="">Formato párrafo</option>
+        <option value="p">Párrafo normal</option>
+        <option value="h2">Título de sección</option>
+        <option value="h3">Subtítulo</option>
+        <option value="blockquote">Cita destacada</option>
+      </select>
+      <div class="tool-sep"></div>
+      <button class="tool-btn" title="Negrita (Ctrl+B)" onclick="execCmd('bold')"><i class="ti ti-bold"></i></button>
+      <button class="tool-btn" title="Cursiva (Ctrl+I)" onclick="execCmd('italic')"><i class="ti ti-italic"></i></button>
+      <button class="tool-btn" title="Subrayado (Ctrl+U)" onclick="execCmd('underline')"><i class="ti ti-underline"></i></button>
+      <button class="tool-btn" title="Tachado" onclick="execCmd('strikeThrough')"><i class="ti ti-strikethrough"></i></button>
+      <div class="tool-sep"></div>
+      <button class="tool-btn" title="Lista con viñetas" onclick="execCmd('insertUnorderedList')"><i class="ti ti-list"></i></button>
+      <button class="tool-btn" title="Lista numerada" onclick="execCmd('insertOrderedList')"><i class="ti ti-list-numbers"></i></button>
+      <div class="tool-sep"></div>
+      <button class="tool-btn" title="Alinear izquierda" onclick="execCmd('justifyLeft')"><i class="ti ti-align-left"></i></button>
+      <button class="tool-btn" title="Centrar" onclick="execCmd('justifyCenter')"><i class="ti ti-align-center"></i></button>
+      <button class="tool-btn" title="Justificar" onclick="execCmd('justifyFull')"><i class="ti ti-align-justified"></i></button>
+      <div class="tool-sep"></div>
+      <button class="tool-btn" title="Insertar tabla" onclick="insertTable()"><i class="ti ti-table"></i></button>
+      <button class="tool-btn" title="Insertar imagen" onclick="insertImage()"><i class="ti ti-photo"></i></button>
+      <button class="tool-btn" title="Insertar cita APA" onclick="insertCita()"><i class="ti ti-quote"></i></button>
+      <div class="tool-sep"></div>
+      <button class="tool-btn" title="Deshacer (Ctrl+Z)" onclick="execCmd('undo')"><i class="ti ti-arrow-back-up"></i></button>
+      <button class="tool-btn" title="Rehacer (Ctrl+Y)" onclick="execCmd('redo')"><i class="ti ti-arrow-forward-up"></i></button>
+      <div class="tool-sep"></div>
+      <button class="tool-btn" title="Limpiar formato" onclick="execCmd('removeFormat')"><i class="ti ti-clear-formatting"></i></button>
+    </div>
+
+    <!-- Content editable area -->
+    <div class="content-area">
+      <div id="editor-content" contenteditable="true"
+        oninput="onContentChange()"
+        onkeydown="handleKeydown(event)"
+        spellcheck="true"
+        lang="es"></div>
+    </div>
+
+    <!-- Editor footer stats -->
+    <div class="editor-footer">
+      <div class="word-stats">
+        <span class="stat-item"><i class="ti ti-letter-case"></i> <span class="stat-num" id="stat-words">0</span> palabras</span>
+        <span class="stat-item"><i class="ti ti-clock"></i> <span class="stat-num" id="stat-read">0</span> min lectura</span>
+        <span class="stat-item"><i class="ti ti-text-size"></i> <span class="stat-num" id="stat-chars">0</span> caracteres</span>
+      </div>
+      <span class="editor-hint">Guardado automático · Ctrl+S para guardar</span>
+    </div>
+
+  </div><!-- /editor-col -->
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
+
+    <!-- Semestre filter -->
+    <div class="sidebar-block">
+      <div class="sidebar-head">
+        <div class="sidebar-title"><i class="ti ti-school"></i> Semestre activo</div>
+      </div>
+      <div class="sem-grid" id="sem-grid">
+        <button class="sem-pill" onclick="toggleSem(this)">I</button>
+        <button class="sem-pill active" onclick="toggleSem(this)">II</button>
+        <button class="sem-pill" onclick="toggleSem(this)">III</button>
+        <button class="sem-pill" onclick="toggleSem(this)">IV</button>
+        <button class="sem-pill" onclick="toggleSem(this)">V</button>
+        <button class="sem-pill" onclick="toggleSem(this)">VI</button>
+        <button class="sem-pill" onclick="toggleSem(this)">VII</button>
+        <button class="sem-pill" onclick="toggleSem(this)">VIII</button>
+        <button class="sem-pill" onclick="toggleSem(this)">IX</button>
+        <button class="sem-pill" onclick="toggleSem(this)">X</button>
+      </div>
+    </div>
+
+    <!-- Analysis scores -->
+    <div class="sidebar-block">
+      <div class="sidebar-head">
+        <div class="sidebar-title"><i class="ti ti-chart-bar"></i> Análisis editorial</div>
+        <button style="background:none;border:none;cursor:pointer;color:var(--gold);font-size:11px;font-family:'Inter',sans-serif" onclick="recalcScores()">↻ Actualizar</button>
+      </div>
+      <div class="score-list" id="score-list">
+        <div class="score-row">
+          <span class="score-name">Coherencia</span>
+          <div class="score-track"><div class="score-fill ok" id="s-coherencia" style="width:72%"></div></div>
+          <span class="score-val" id="sv-coherencia">72%</span>
+        </div>
+        <div class="score-row">
+          <span class="score-name">Estilo APA</span>
+          <div class="score-track"><div class="score-fill mid" id="s-apa" style="width:58%"></div></div>
+          <span class="score-val" id="sv-apa">58%</span>
+        </div>
+        <div class="score-row">
+          <span class="score-name">Originalidad</span>
+          <div class="score-track"><div class="score-fill ok" id="s-orig" style="width:89%"></div></div>
+          <span class="score-val" id="sv-orig">89%</span>
+        </div>
+        <div class="score-row">
+          <span class="score-name">Ortografía</span>
+          <div class="score-track"><div class="score-fill low" id="s-ort" style="width:41%"></div></div>
+          <span class="score-val" id="sv-ort">41%</span>
+        </div>
+        <div class="score-row">
+          <span class="score-name">Estructura</span>
+          <div class="score-track"><div class="score-fill mid" id="s-estr" style="width:65%"></div></div>
+          <span class="score-val" id="sv-estr">65%</span>
+        </div>
+        <div class="score-row">
+          <span class="score-name">Extensión</span>
+          <div class="score-track"><div class="score-fill low" id="s-ext" style="width:12%"></div></div>
+          <span class="score-val" id="sv-ext">12%</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending corrections -->
+    <div class="sidebar-block">
+      <div class="sidebar-head">
+        <div class="sidebar-title"><i class="ti ti-alert-circle"></i> Correcciones</div>
+        <span style="font-size:10px;color:var(--muted)">5 pendientes</span>
+      </div>
+
+      <div class="correction-mini ort">
+        <i class="ti ti-circle-dot cm-icon ort"></i>
+        <div class="cm-body">
+          <div class="cm-type">Ortografía</div>
+          <div class="cm-text">Tilde faltante en "mas" como conjunción · Párr. 1</div>
+        </div>
+      </div>
+      <div class="correction-mini apa">
+        <i class="ti ti-circle-dot cm-icon apa"></i>
+        <div class="cm-body">
+          <div class="cm-type">Citación APA</div>
+          <div class="cm-text">Falta número de página en cita Gehl (2010) · Párr. 4</div>
+        </div>
+      </div>
+      <div class="correction-mini est">
+        <i class="ti ti-circle-dot cm-icon est"></i>
+        <div class="cm-body">
+          <div class="cm-type">Estilo</div>
+          <div class="cm-text">Uso de primera persona: "Yo analicé…" · Párr. 2</div>
+        </div>
+      </div>
+      <div class="correction-mini ort">
+        <i class="ti ti-circle-dot cm-icon ort"></i>
+        <div class="cm-body">
+          <div class="cm-type">Contenido</div>
+          <div class="cm-text">Marco teórico sin referentes latinoamericanos</div>
+        </div>
+      </div>
+      <div class="correction-mini apa">
+        <i class="ti ti-circle-dot cm-icon apa"></i>
+        <div class="cm-body">
+          <div class="cm-type">Estructura</div>
+          <div class="cm-text">Conclusiones no responden a objetivo #2</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="sidebar-block">
+      <div class="sidebar-title" style="margin-bottom:10px"><i class="ti ti-tools"></i> Acciones</div>
+      <div class="action-list">
+        <button class="action-btn" onclick="showToast('Abriendo panel de correcciones...', 'ti-list-check')">
+          <i class="ti ti-list-check"></i> Ver todas las correcciones
+        </button>
+        <button class="action-btn" onclick="showToast('Abriendo diagramación...', 'ti-layout')">
+          <i class="ti ti-layout"></i> Diagramar este artículo
+        </button>
+        <button class="action-btn" onclick="showToast('Generando vista previa...', 'ti-eye')">
+          <i class="ti ti-eye"></i> Vista previa de página
+        </button>
+        <button class="action-btn" onclick="showToast('Generando exportación PDF...', 'ti-file-type-pdf')">
+          <i class="ti ti-file-type-pdf"></i> Exportar PDF editorial
+        </button>
+        <button class="action-btn primary" onclick="showToast('Reporte generado y enviado al estudiante', 'ti-send')">
+          <i class="ti ti-send"></i> Generar reporte editorial
+        </button>
+      </div>
+
+      <button class="ai-btn" onclick="analyzeWithAI()">
+        <i class="ti ti-wand"></i> Analizar con IA editorial
+      </button>
+    </div>
+
+  </aside>
+</main>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <i class="ti ti-check" id="toast-icon"></i>
+  <span id="toast-msg">Guardado</span>
+</div>
+
+<script>
+/* ── WORD COUNT ── */
+function onContentChange() {
+  const el = document.getElementById('editor-content');
+  const text = el.innerText.trim();
+  const words = text ? text.split(/\s+/).filter(w => w.length > 0).length : 0;
+  const chars = text.length;
+  const readMin = Math.max(1, Math.ceil(words / 200));
+  document.getElementById('stat-words').textContent = words.toLocaleString('es');
+  document.getElementById('stat-read').textContent = readMin;
+  document.getElementById('stat-chars').textContent = chars.toLocaleString('es');
+
+  /* live extension score */
+  const target = 3000;
+  const pct = Math.min(100, Math.round((words / target) * 100));
+  animateScore('s-ext', 'sv-ext', pct);
+
+  autoSave();
+}
+
+/* ── TOOLBAR COMMANDS ── */
+function execCmd(cmd) {
+  document.getElementById('editor-content').focus();
+  document.execCommand(cmd, false, null);
+}
+
+function formatBlock(tag) {
+  if (!tag) return;
+  document.getElementById('editor-content').focus();
+  document.execCommand('formatBlock', false, tag);
+}
+
+function insertTable() {
+  const html = `<table style="width:100%;border-collapse:collapse;margin:12px 0;font-size:13px">
+    <tr style="background:#F7F3EC">
+      <th style="border:1px solid #E8D5A3;padding:8px 10px;text-align:left;font-weight:600">Encabezado 1</th>
+      <th style="border:1px solid #E8D5A3;padding:8px 10px;text-align:left;font-weight:600">Encabezado 2</th>
+      <th style="border:1px solid #E8D5A3;padding:8px 10px;text-align:left;font-weight:600">Encabezado 3</th>
+    </tr>
+    <tr>
+      <td style="border:1px solid #E8D5A3;padding:8px 10px">Dato 1</td>
+      <td style="border:1px solid #E8D5A3;padding:8px 10px">Dato 2</td>
+      <td style="border:1px solid #E8D5A3;padding:8px 10px">Dato 3</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #E8D5A3;padding:8px 10px">Dato 4</td>
+      <td style="border:1px solid #E8D5A3;padding:8px 10px">Dato 5</td>
+      <td style="border:1px solid #E8D5A3;padding:8px 10px">Dato 6</td>
+    </tr>
+  </table><p></p>`;
+  document.execCommand('insertHTML', false, html);
+  showToast('Tabla insertada', 'ti-table');
+}
+
+function insertImage() {
+  const html = `<div style="background:#1A1A2E;border-radius:6px;padding:20px;text-align:center;margin:12px 0;color:rgba(201,168,76,0.5);font-size:12px;font-style:italic">[Figura X — Descripción de la imagen o plano arquitectónico]<br><span style="font-size:10px;color:rgba(201,168,76,0.3)">Fuente: Elaboración propia, 2025</span></div><p></p>`;
+  document.execCommand('insertHTML', false, html);
+  showToast('Marcador de figura insertado', 'ti-photo');
+}
+
+function insertCita() {
+  const html = ` <cite style="background:rgba(201,168,76,0.1);border-left:2px solid #C9A84C;padding:2px 6px;border-radius:0 4px 4px 0;font-style:normal;font-size:13px">(Apellido, Año, p. XX)</cite>`;
+  document.execCommand('insertHTML', false, html);
+  showToast('Plantilla de cita APA insertada', 'ti-quote');
+}
+
+/* ── KEYBOARD SHORTCUTS ── */
+function handleKeydown(e) {
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+    e.preventDefault();
+    showToast('Borrador guardado', 'ti-device-floppy');
+  }
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    e.preventDefault();
+    toggleFind();
+  }
+}
+
+/* ── FIND / REPLACE ── */
+function toggleFind() {
+  const bar = document.getElementById('find-bar');
+  bar.classList.toggle('visible');
+  if (bar.classList.contains('visible')) {
+    document.getElementById('find-input').focus();
+  }
+}
+
+function findText() {
+  const q = document.getElementById('find-input').value;
+  if (!q) return;
+  const el = document.getElementById('editor-content');
+  const text = el.innerHTML;
+  el.innerHTML = text.replace(new RegExp(q, 'gi'), m => `<mark style="background:#E8D5A3;border-radius:2px">${m}</mark>`);
+  showToast('Resultados marcados en amarillo', 'ti-search');
+}
+
+function replaceText() {
+  const q = document.getElementById('find-input').value;
+  const r = document.getElementById('replace-input').value;
+  if (!q) return;
+  const el = document.getElementById('editor-content');
+  el.innerHTML = el.innerHTML.replace(new RegExp(q, 'gi'), r);
+  showToast(`"${q}" reemplazado por "${r}"`, 'ti-replace');
+}
+
+/* ── SEMESTER FILTER ── */
+function toggleSem(btn) {
+  document.querySelectorAll('.sem-pill').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+/* ── SCORES ANIMATION ── */
+function animateScore(barId, valId, pct) {
+  const bar = document.getElementById(barId);
+  const val = document.getElementById(valId);
+  if (!bar || !val) return;
+  bar.style.width = pct + '%';
+  val.textContent = pct + '%';
+  bar.className = 'score-fill ' + (pct >= 70 ? 'ok' : pct >= 45 ? 'mid' : 'low');
+}
+
+function recalcScores() {
+  const text = document.getElementById('editor-content').innerText;
+  const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+  const hasCites = (text.match(/\(\w+,\s*\d{4}/g) || []).length;
+  const hasStruct = ['introducción','metodología','resultados','conclusión'].filter(s => text.toLowerCase().includes(s)).length;
+
+  animateScore('s-coherencia', 'sv-coherencia', Math.min(95, 50 + words / 40));
+  animateScore('s-apa', 'sv-apa', Math.min(95, hasCites * 15 + 20));
+  animateScore('s-orig', 'sv-orig', Math.min(95, 60 + Math.random() * 25));
+  animateScore('s-ort', 'sv-ort', Math.min(95, 30 + words / 20));
+  animateScore('s-estr', 'sv-estr', Math.min(95, hasStruct * 22 + 10));
+  animateScore('s-ext', 'sv-ext', Math.min(100, Math.round((words / 3000) * 100)));
+
+  showToast('Análisis actualizado', 'ti-chart-bar');
+}
+
+/* ── AUTO SAVE ── */
+let saveTimer;
+function autoSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => {
+    const data = {
+      titulo: document.getElementById('field-titulo').value,
+      autor: document.getElementById('field-autor').value,
+      semestre: document.getElementById('field-semestre').value,
+      area: document.getElementById('field-area').value,
+      abstract: document.getElementById('field-abstract').value,
+      content: document.getElementById('editor-content').innerHTML,
+      savedAt: new Date().toISOString()
+    };
+    localStorage.setItem('rm-draft', JSON.stringify(data));
+  }, 1200);
+}
+
+/* ── LOAD DRAFT ── */
+function loadDraft() {
+  try {
+    const raw = localStorage.getItem('rm-draft');
+    if (!raw) return;
+    const data = JSON.parse(raw);
+    if (data.titulo) document.getElementById('field-titulo').value = data.titulo;
+    if (data.autor)  document.getElementById('field-autor').value = data.autor;
+    if (data.abstract) document.getElementById('field-abstract').value = data.abstract;
+    if (data.content) {
+      document.getElementById('editor-content').innerHTML = data.content;
+      onContentChange();
+    }
+  } catch(e) {}
+}
+
+/* ── AI ANALYZE ── */
+function analyzeWithAI() {
+  const titulo = document.getElementById('field-titulo').value || 'Sin título';
+  const semestre = document.getElementById('field-semestre').value || 'No especificado';
+  const content = document.getElementById('editor-content').innerText.substring(0, 800) || 'Sin contenido aún';
+  showToast('Enviando a análisis editorial IA...', 'ti-wand');
+
+  setTimeout(() => {
+    recalcScores();
+    showToast('Análisis completado · 5 correcciones generadas', 'ti-check');
+  }, 2000);
+}
+
+/* ── TOAST ── */
+function showToast(msg, icon) {
+  const t = document.getElementById('toast');
+  const i = document.getElementById('toast-icon');
+  const m = document.getElementById('toast-msg');
+  i.className = 'ti ' + (icon || 'ti-check');
+  m.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', () => {
+  loadDraft();
+  document.getElementById('editor-content').addEventListener('input', onContentChange);
+});
+</script>
+</body>
+</html>
